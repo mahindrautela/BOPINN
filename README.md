@@ -1,5 +1,9 @@
 # BOPINN (Bayesian optimized physics-informed neural network)
-PINN is the forward model whereas BOPINN is the inversion scheme which runs BO over PINN to estimate the parameter of the PDE. In BOPINN, a PINN utilizes a neural surrogate to solve the partial differential equation (wave propagation here). Bayesian optimization runs over the PINN model and estimates the optimum parameters (wave velocity in the medium here) using a single snapshot observation of the field.  
+BOPINN presents new paradigm to solve inverse problems by bringing an amalgamation of PINNs and BO. It uses BO (a gradient-free and global optimization scheme) and PINNs (a fast neural surrogate solver for PDEs).  
+In BOPINN, a PINN utilizes a neural surrogate to solve the partial differential equation (wave propagation here). Bayesian optimization runs over the PINN model and estimates the optimum parameters (wave velocity in the medium here) using a single snapshot observation of the field.  
+BOPINN is used to query the black-box PINN model at different wave velocities until it converges to the true wave velocity.    
+BOPINN is simpler (uses single neural network), robust (capturs uncertainty) and flexible (useful in real-time and online settings).  
+  
 For more information:  
 1. 
 
