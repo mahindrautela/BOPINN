@@ -191,31 +191,32 @@ ic_all_all = np.array(ic_all_all)
 cstar_all = np.array(cstar_all)
 
 #%% Process the BO results
-max_mse_allruns = np.max(mse_star_all)
-min_mse_allruns = np.min(mse_star_all)
-mean_mse_allruns = np.mean(mse_star_all)
-std_mse_allruns = np.std(mse_star_all)
+# max, min, mean and sd target function/objective function value across different runs
+max_mse_star_allruns, min_mse_star_allruns = np.max(mse_star_all), np.min(mse_star_all)
+mean_mse_star_allruns, std_mse_star_allruns = np.mean(mse_star_all), np.std(mse_star_all)
 
-idx_max_mse_allruns = np.where(max_mse_allruns == mse_star_all)
-idx_min_mse_allruns = np.where(min_mse_allruns == mse_star_all)
+# optima corresponding to abovementioned optimal points
+idx_max_mse_star_allruns = np.where(max_mse_star_allruns == mse_star_all)
+idx_min_mse_star_allruns = np.where(min_mse_star_allruns == mse_star_all)
 
-max_cstar_allruns = cstar_all[idx_max_mse_allruns]
-min_cstar_allruns = cstar_all[idx_min_mse_allruns]
+max_cstar_allruns = cstar_all[idx_max_mse_star_allruns]
+min_cstar_allruns = cstar_all[idx_min_mse_star_allruns]
 mean_cstar_allruns = np.mean(cstar_all)
 std_cstar_allruns = np.std(cstar_all)
 
-print("Max (optimal) tf across runs = ",max_mse_allruns)
-print("Min (worst non-optimal) tf across runs = ",min_mse_allruns)
-print("Mean tf across runs = ",mean_mse_allruns)
-print("Std tf across runs = ",std_mse_allruns)
+print("Max (best optimal) tf across runs = ",max_mse_star_allruns)
+print("Min (worst optimal) tf across runs = ",min_mse_star_allruns)
+print("Mean tf across runs = ",mean_mse_star_allruns)
+print("Std tf across runs = ",std_mse_star_allruns)
 
-print("Max (optimal) c* across runs = ",max_cstar_allruns)
-print("Min (worst non-optimal) c* across runs = ",min_cstar_allruns)
+print("Max (best optimal) c* across runs = ",max_cstar_allruns)
+print("Min (worst optimal) c* across runs = ",min_cstar_allruns)
 print("Mean c* across runs = ",mean_cstar_allruns)
 print("Std c* across runs = ",std_cstar_allruns)
 
+# plot best optimal run with the optima
 idx_max_all = []
-for i in range(mse_all_all.shape[0]): 
+for i in range(mse_all_all.shape[0]):
     idx_max = np.where(mse_all_all[i,:] == mse_star_all[i])
     idx_max = idx_max[0][0]
     idx_max_all.append(idx_max)
@@ -225,43 +226,10 @@ std_mse_all = np.std(mse_all_all, axis=0)
 mean_ic_all = np.mean(ic_all_all, axis=0)
 std_ic_all = np.std(ic_all_all, axis=0)
 
-#%% plot the BO results
-xaxis = np.arange(0,mse_all_all.shape[1])
-plt.figure(figsize = (8, 6))
-plt.plot(xaxis, mean_mse_all, 'tab:blue')
-plt.plot(idx_max_all, mse_star_all, '*r')
-plt.fill_between(xaxis, mean_mse_all-std_mse_all, mean_mse_all+std_mse_all,
-                 alpha=0.2, facecolor='tab:blue',linewidth=4)
-plt.xlabel("itterations",fontsize=20)
-plt.ylabel("target function, g(c)",fontsize=20)
-plt.legend(['g(c)','max g(c)'], fontsize = 16)
-plt.xticks(fontsize=20)
-plt.yticks(fontsize=20)
-#plt.xlim([40,50])
-#plt.ylim([-0.0005,0.0002])
-plt.savefig('tfvsitt_'+str(idx_data+1)+'.png', dpi=600)
-plt.show()
-
-xaxis = np.arange(0,mse_all_all.shape[1])
-plt.figure(figsize = (8, 6))
-plt.plot(idx_max_all, cstar_all, '*r')
-plt.plot(xaxis,np.ones((mse_all_all.shape[1],1))*0.2,'--k')
-plt.fill_between(xaxis, mean_ic_all-std_ic_all, mean_ic_all+std_ic_all,
-                 alpha=0.2, facecolor='tab:blue',linewidth=4)
-plt.plot(xaxis, mean_ic_all, 'tab:blue')
-plt.xlabel("itterations",fontsize=20)
-plt.ylabel("wave velocity, c",fontsize=20)
-plt.xticks(fontsize=20)
-plt.yticks(fontsize=20)
-plt.legend(['Predicted velocity','True velocity'], fontsize = 16)
-plt.savefig('cvsitt_'+str(idx_data+1)+'.png', dpi = 600)
-plt.show()
-
-# optimal tf vs c
-opt_mse_run = mse_all_all[idx_max_mse_allruns[0][0]]
-opt_c_run = ic_all_all[idx_max_mse_allruns[0][0]]
-opt_mse = mse_star_all[idx_max_mse_allruns[0][0]]
-opt_c = cstar_all[idx_max_mse_allruns[0][0]]
+opt_mse_run = mse_all_all[idx_max_mse_star_allruns[0][0]]
+opt_c_run = ic_all_all[idx_max_mse_star_allruns[0][0]]
+opt_mse = mse_star_all[idx_max_mse_star_allruns[0][0]]
+opt_c = cstar_all[idx_max_mse_star_allruns[0][0]]
 
 txt = 'c* = '+ str(round(opt_c,4))
 plt.figure(figsize = (8, 6))
@@ -275,24 +243,3 @@ plt.yticks(fontsize=20)
 plt.legend(['TF vs c','Optimal (Max)'], fontsize = 16)
 plt.savefig('tfvsc_'+str(idx_data+1)+'.png', bbox_inches='tight', dpi=600)
 plt.show()
-
-# optimal tf vs c
-# txt = 'c* = '+ str(round(opt_c,4))
-# plt.figure(figsize = (8, 6))
-# plt.plot(opt_c_run,opt_mse_run,'ob',markersize=6)
-# plt.plot(opt_c,opt_mse,'*r',markersize=8)
-# plt.text(0.14, -0.003, txt, fontsize=15, c = 'r')
-# plt.xlabel("velocity, c",fontsize=20)
-# plt.ylabel("target function, g(c)",fontsize=20)
-# plt.xticks(fontsize=20)
-# plt.yticks(fontsize=20)
-# plt.xim([0,0.3])
-# plt.legend(['TF vs c','Optimal (Max)'], fontsize = 16)
-# plt.savefig('tfvsc_zoomed_'+str(idx_data+1)+'.png', dpi=600)
-# plt.show()
-
-#%% save data
-import scipy.io as sio
-name = "results_"+str(idx_data+1)+".mat"
-data_dict = {"tf":mse_all_all,"tfstar": mse_star_all,"c":ic_all_all,"cstar":cstar_all}
-sio.savemat(name, data_dict)
