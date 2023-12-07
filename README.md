@@ -1,6 +1,6 @@
 # BOPINN (Bayesian optimized physics-informed neural network)
 BOPINN presents new paradigm to solve inverse problems by bringing an amalgamation of PINNs and BO. It uses BO (a gradient-free and global optimization scheme) and PINNs (a fast neural surrogate solver for PDEs). In BOPINN, a PINN utilizes a neural surrogate to solve the partial differential equation (wave propagation here). Bayesian optimization runs over the PINN model and estimates the optimum parameters (wave velocity in the medium here) using a single snapshot observation of the field. BOPINN queries the black-box PINN model at different wave velocities until it converges to the true wave velocity. The proposed method is simpler (uses single neural network), robust (capturs uncertainty) and flexible (useful in real-time and online settings) as compared to it's counterparts.  
-![alt text](http://github.com/mahindrautela/BOPINN/images/BOPINNalgo.png](https://github.com/mahindrautela/BOPINN/tree/main/images)
+![alt text](https://github.com/mahindrautela/BOPINN/tree/main/images/BOPINNalgo.png)
 For more information:  
 1. 
 
