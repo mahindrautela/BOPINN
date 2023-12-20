@@ -31,7 +31,7 @@ path = "E:\MSR\data\BOPINN\data"
 dir_list = os.listdir(path)
 print("Files in directory",dir_list)
 
-idx_data = 0 # 0,3,6
+idx_data = 3 # 0,3,6
 data = dir_list[idx_data] 
 print("Imported file", data)
 
@@ -147,7 +147,6 @@ for r in range(n_runs):
     # utility function
     util = UtilityFunction(kind='ucb',
                            kappa=2.576,
-                           xi=0.0,
                            kappa_decay=1,
                            kappa_decay_delay=0)
     
@@ -205,15 +204,16 @@ mean_cstar_allruns = np.mean(cstar_all)
 std_cstar_allruns = np.std(cstar_all)
 
 print("Max (best optimal) tf across runs = ",max_mse_star_allruns)
-print("Min (worst optimal) tf across runs = ",min_mse_star_allruns)
+print("Min (least optimal) tf across runs = ",min_mse_star_allruns)
 print("Mean tf across runs = ",mean_mse_star_allruns)
 print("Std tf across runs = ",std_mse_star_allruns)
 
 print("Max (best optimal) c* across runs = ",max_cstar_allruns)
-print("Min (worst optimal) c* across runs = ",min_cstar_allruns)
+print("Min (least optimal) c* across runs = ",min_cstar_allruns)
 print("Mean c* across runs = ",mean_cstar_allruns)
 print("Std c* across runs = ",std_cstar_allruns)
 
+#%% plot the BO results
 # plot best optimal run with the optima
 idx_max_all = []
 for i in range(mse_all_all.shape[0]):
@@ -231,15 +231,16 @@ opt_c_run = ic_all_all[idx_max_mse_star_allruns[0][0]]
 opt_mse = mse_star_all[idx_max_mse_star_allruns[0][0]]
 opt_c = cstar_all[idx_max_mse_star_allruns[0][0]]
 
+# tf vs c
 txt = 'c* = '+ str(round(opt_c,4))
 plt.figure(figsize = (8, 6))
 plt.plot(opt_c_run,opt_mse_run,'ob',markersize=6)
-plt.plot(opt_c,opt_mse,'*r',markersize=8)
-plt.text(0.75, -0.02, txt, fontsize=15, c = 'r')
+plt.plot(opt_c,opt_mse,'*r',markersize=8, label = 'Best optima')
+#plt.text(0.75, -0.03, txt, fontsize=18, c = 'r')
 plt.xlabel("velocity, c",fontsize=20)
 plt.ylabel("target function, g(c)",fontsize=20)
 plt.xticks(fontsize=20)
 plt.yticks(fontsize=20)
-plt.legend(['TF vs c','Optimal (Max)'], fontsize = 16)
+plt.legend(fontsize = 14, loc='upper left')
 plt.savefig('tfvsc_'+str(idx_data+1)+'.png', bbox_inches='tight', dpi=600)
 plt.show()

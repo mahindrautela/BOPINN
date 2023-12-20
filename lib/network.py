@@ -27,6 +27,7 @@ class Network:
         for layer in layers:
             x = tf.keras.layers.Dense(layer, activation=activation,
                 kernel_initializer='he_normal')(x)
+            x = tf.keras.layers.Dropout(0.1)(x)
         # output layer
         outputs = tf.keras.layers.Dense(num_outputs,
             kernel_initializer='he_normal')(x)
