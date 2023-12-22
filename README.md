@@ -10,7 +10,7 @@ BOPINN presents new paradigm to solve inverse problems by bringing an amalgamati
 </p>
 
 For more information:  
-1. 
+1. [Link](https://doi.org/10.48550/arXiv.2312.14064) of the paper: Bayesian optimized physics-informed neural network for estimating wave propagation velocities
 
 ## About the repository:
 1. Written in tensorflow 2.10 with cuda 11.8 and cudnn 8.x
