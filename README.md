@@ -15,7 +15,7 @@ For more information:
 ## About the repository:
 1. Written in tensorflow 2.10 with cuda 11.8 and cudnn 8.x
 2. "BOPINN.py" is the python file (run in spyder) and "BOPINN.ipynb" is a notebook (use colab or jupyter)
-3. "PINN.py" is a PINN based solver for forward wave propagation problem. It's an auxillary code to understand the forward problem
+3. "PINN.py" is a PINN based solver for forward wave propagation problem. It's an auxiliary code to understand the forward problem
 4. "analytical.py" gives the exact solution of the wave equation with dirichlet BC and it is used to collect data (added white noise)  
 5. data folder contains the snapshot observation collected from "analytical.py"  
 6. lib folder has .py files required to run "PINN.py" and "BOPINN.py"
