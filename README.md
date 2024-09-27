@@ -18,7 +18,8 @@ BOPINN presents new paradigm to solve inverse problems by bringing an amalgamati
 6. lib folder has .py files required to run "PINN.py" and "BOPINN.py"
 
 For more information:  
-1. [Link](https://doi.org/10.48550/arXiv.2312.14064) of the paper: Bayesian optimized physics-informed neural network for estimating wave propagation velocities. Please cite the paper if you are using code, paper or data.
+1. [Link](https://doi.org/10.48550/arXiv.2312.14064) of the paper: Bayesian optimized physics-informed neural network for estimating wave propagation velocities.
+2. Please cite the paper if you are using code, paper or data.
 ```
 @article{rautela2023bayesian,
   title={Bayesian optimized physics-informed neural network for estimating wave propagation velocities},
