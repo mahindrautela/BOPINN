@@ -9,9 +9,6 @@ BOPINN presents new paradigm to solve inverse problems by bringing an amalgamati
     <img src="images/BOPINNalgo.PNG" width="400" height="320" />
 </p>
 
-For more information:  
-1. [Link](https://doi.org/10.48550/arXiv.2312.14064) of the paper: Bayesian optimized physics-informed neural network for estimating wave propagation velocities
-
 ## About the repository:
 1. Written in tensorflow 2.10 with cuda 11.8 and cudnn 8.x
 2. "BOPINN.py" is the python file (run in spyder) and "BOPINN.ipynb" is a notebook (use colab or jupyter)
@@ -19,3 +16,15 @@ For more information:
 4. "analytical.py" gives the exact solution of the wave equation with dirichlet BC and it is used to collect data (added white noise)  
 5. data folder contains the snapshot observation collected from "analytical.py"  
 6. lib folder has .py files required to run "PINN.py" and "BOPINN.py"
+
+For more information:  
+1. [Link](https://doi.org/10.48550/arXiv.2312.14064) of the paper: Bayesian optimized physics-informed neural network for estimating wave propagation velocities. Please cite the paper if you are using code, paper or data.
+```
+@article{rautela2023bayesian,
+  title={Bayesian optimized physics-informed neural network for estimating wave propagation velocities},
+  author={Rautela, Mahindra and Gopalakrishnan, S and Senthilnath, J},
+  journal={arXiv preprint arXiv:2312.14064},
+  year={2023}
+}
+```
+
