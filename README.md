@@ -11,11 +11,12 @@ BOPINN presents new paradigm to solve inverse problems by bringing an amalgamati
 
 ## About the repository:
 1. Written in tensorflow 2.10 with cuda 11.8 and cudnn 8.x
-2. "BOPINN.py" is the python file (run in spyder) and "BOPINN.ipynb" is a notebook (use colab or jupyter)
-3. "PINN.py" is a PINN based solver for forward wave propagation problem. It's an auxillary code to understand the forward problem
-4. "analytical.py" gives the exact solution of the wave equation with dirichlet BC and it is used to collect data (added white noise)  
-5. data folder contains the snapshot observation collected from "analytical.py"  
-6. lib folder has .py files required to run "PINN.py" and "BOPINN.py"
+2. The code uses BO repository from [bayesian-optimization](https://github.com/bayesian-optimization/BayesianOptimization).
+3. "BOPINN.py" is the python file (run in spyder) and "BOPINN.ipynb" is a notebook (use colab or jupyter)
+4. "PINN.py" is a PINN based solver for forward wave propagation problem. It's an auxillary code to understand the forward problem
+5. "analytical.py" gives the exact solution of the wave equation with dirichlet BC and it is used to collect data (added white noise)  
+6. data folder contains the snapshot observation collected from "analytical.py"  
+7. lib folder has .py files required to run "PINN.py" and "BOPINN.py"
 
 For more information:  
 1. [Link](https://doi.org/10.48550/arXiv.2312.14064) of the paper: Bayesian optimized physics-informed neural network for estimating wave propagation velocities.
